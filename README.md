@@ -30,15 +30,15 @@ Requirement:
 3. Peserta memahami bagaimana cara membuat thread
 
 ## Daftar Isi
-- [2. IPC]()
-- [2.1 IPC]()
-- [2.2 Pipes]()
-- [2.2.1 Membuat Unnamed Pipe]()
-- [2.2.2 Membuat Named Pipe]()
-- [2.3 Socket]()
-- [2.4 Message Queue]()
-- [2.5 Semaphores]()
-- [2.6 Shared Memory]()
+- [2. IPC](https://github.com/desyrahmi/sisop-modul-3#2-ipc-interprocess-communication)
+- [2.1 IPC](https://github.com/desyrahmi/sisop-modul-3#21-ipc)
+- [2.2 Pipes](https://github.com/desyrahmi/sisop-modul-3#22-pipes)
+- [2.2.1 Membuat Unnamed Pipe](https://github.com/desyrahmi/sisop-modul-3#221-membuat-unnamed-pipe)
+- [2.2.2 Membuat Named Pipe](https://github.com/desyrahmi/sisop-modul-3#222-membuat-named-pipe)
+- [2.3 Socket](https://github.com/desyrahmi/sisop-modul-3#23-sockets)
+- [2.4 Message Queue](https://github.com/desyrahmi/sisop-modul-3#24-message-queues)
+- [2.5 Semaphores](https://github.com/desyrahmi/sisop-modul-3#24-message-queues)
+- [2.6 Shared Memory](https://github.com/desyrahmi/sisop-modul-3#25-semaphores)
 - [Appendix](#appendix)
 
 # 2. IPC (*Interprocess Communication*)
@@ -49,7 +49,7 @@ IPC (*Interprocess Communication*) adalah cara atau mekanisme pertukaran data an
 Pipe merupakan komunikasi sequensial antar proses yang saling terelasi. Kelemahannya, hanya dapat digunakan untuk proses yang saling berhubungan dan secara sequensial.
 Terdapat dua jenis pipe:
 - unnamed pipe : Komunikasi antara parent dan child proses.
-- named pipe : Biasa disebut sebagai FIFO, digunakan untuk komunikasi yang berjalan secara independen. `Hanya bisa digunakan jika kedua proses menggunakan` *`filesystem`* `yang sama.`
+- named pipe : Biasa disebut sebagai FIFO, digunakan untuk komunikasi yang berjalan secara independen. **Hanya bisa digunakan jika kedua proses menggunakan *filesystem* yang sama.**
 ```
 $ ls | less
 ```
