@@ -32,7 +32,7 @@ Requirement:
 3. Peserta memahami bagaimana cara membuat thread
 
 ## Daftar Isi
-- [1. Thread](https://github.com/desyrahmi/sisop-modul-3#1-Thread )
+- [1. Thread](https://github.com/desyrahmi/sisop-modul-3#1-thread )
 - [2. IPC](https://github.com/desyrahmi/sisop-modul-3#2-ipc-interprocess-communication)
 - [2.1 IPC](https://github.com/desyrahmi/sisop-modul-3#21-ipc)
 - [2.2 Pipes](https://github.com/desyrahmi/sisop-modul-3#22-pipes)
