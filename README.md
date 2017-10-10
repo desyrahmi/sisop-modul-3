@@ -23,6 +23,8 @@ Thread dan IPC
 Requirement:
 1. Linux
 2. gcc / g++
+3. vlc-nox
+4. gcc -pthread -o [output] input.c
 
 ## Objectives
 1. Peserta mengetahui thread
