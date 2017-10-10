@@ -41,6 +41,16 @@ Requirement:
 - [2.6 Shared Memory](https://github.com/desyrahmi/sisop-modul-3#25-semaphores)
 - [Appendix](#appendix)
 
+# 1. Thread
+### 1.1 Thread
+Thread merupakan unit terkecil dalam suatu proses yang bisa dijadwalkan oleh sistem operasi. Dimana THREAD juga bisa menjalankan suatu tugas secara bersamaan. Dalam thread terdapat ID Thread, Program COunter, Register dan Stack.
+Untuk mengecek bisa menggunakan perintah
+```
+$ top -H
+```
+
+### 1.2 
+
 # 2. IPC (*Interprocess Communication*)
 ### 2.1 IPC
 IPC (*Interprocess Communication*) adalah cara atau mekanisme pertukaran data antara satu proses dengan proses lain, baik pada komputer yang sama atau komputer jarak jauh yang terhubung melalui suatu jaringan.
