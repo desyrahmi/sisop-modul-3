@@ -54,12 +54,213 @@ Untuk mengecek bisa menggunakan perintah
 ```
 $ top -H
 ```
+Untuk membuat suatu Thread menggunakan :
+```c
+int pthread_create(pthread_t * thread,const pthread_attr_t * attr,void * (*start_routine)(void *),void *arg);
+```
+Hasil kembalian dari inisialisasi adalah 0 atau 1, 0 berarti tidak ada error sedangkan 1 berarti ada error.
+Penjelasan Syntax:
+```
+- thread : mengembalikan thread id.
+- attr   : Set menjadi NULL jika default thread attribut digunakan. Jika
+           tidak definisi members dari struct pthread_attr_t didefinisikan menjadi bits/pthreadtypes.h) Atribut-atribut yang termasuk:
+    * detached state (joinable? Default: PTHREAD_CREATE_JOINABLE. Other option: PTHREAD_CREATE_DETACHED)
+    * scheduling policy (real-time? PTHREAD_INHERIT_SCHED,PTHREAD_EXPLICIT_SCHED,SCHED_OTHER)
+    * scheduling parameter
+    * inheritsched attribute (Default: PTHREAD_EXPLICIT_SCHED Inherit from parent thread: PTHREAD_INHERIT_SCHED)
+    * scope (Kernel threads: PTHREAD_SCOPE_SYSTEM User threads: PTHREAD_SCOPE_PROCESS Pick one or the other not both.)
+    * guard size
+    * stack address (See unistd.h and bits/posix_opt.h _POSIX_THREAD_ATTR_STACKADDR)
+    * stack size (default minimum PTHREAD_STACK_SIZE set in pthread.h)
+- void * (*start_routine) : pointer ke fungsi yang akan menjadi thread. Fungsi menjadi sebuah argument yang menunjuk ke fungsi void.
+- *arg - pointer ke argument fungsi. 
 
+
+```
+
+Contoh membuat program tanpa menggunakan thread:
+```c
+#include<stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+/*************************************************************************************
+*Download file lagu di  https://drive.google.com/open?id=0Byp4qmu5MH1heHNfSUt5VE8zWVk*
+*************************************************************************************/
+int main()
+{
+    int i,length=10;
+    system("clear");
+    for(i=length;i>0;i--)
+    {
+        printf("%d",i);
+        fflush(stdout);
+        sleep(1);
+        system("clear");
+    }
+    system("cvlc bagimu-negri.mp3");
+}
+
+```
+
+Contoh membuat program menggunakan thread:
+```c
+#include<stdio.h>
+#include<string.h>
+#include<pthread.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<stdlib.h>
+/*******************************************************
+*compile dengan cara gcc -pthread -o [output] input.c *
+*******************************************************/
+
+pthread_t tid[2];//inisialisasi array untuk menampung thread dalam kasusu ini ada 2 thread
+
+int length=157;//inisialisasi jumlah looping
+void* playandcount(void *arg)
+{
+    unsigned long i=0;
+    pthread_t id=pthread_self();
+    int iter;
+    if(pthread_equal(id,tid[0]))//thread untuk menjalankan counter
+    {
+        system("clear");
+        for(iter=length;iter>0;iter--)
+        {
+            printf("%i",iter);
+            fflush(stdout);
+            sleep(1);
+            system("clear");
+        }
+    }
+    else if(pthread_equal(id,tid[1]))
+    {
+        system("cvlc bagimu-negri.mp3");
+    }
+    return NULL;
+}
+int main(void)
+{
+    int i=0;
+    int err;
+    while(i<2)//looping membuat thread 2x
+    {
+        err=pthread_create(&(tid[i]),NULL,&playandcount,NULL);//membuat thread
+        if(err!=0)//cek error
+        {
+            printf("\n can't create thread : [%s]",strerror(err));
+        }
+        else
+        {
+            printf("\n create thread success");
+        }
+        i++;
+    }
+    pthread_join(tid[0],NULL);
+    pthread_join(tid[1],NULL);
+    return 0;
+}
+
+```
+
+Kesimpulan : terlihat ketika program menggunakan thread dapat menjalankan dua task secara bersamaan.
 ### 1.2 Join Thread
 Fungsi untuk melakukan penggabungan dengan thread lain yang telah di-terminasi (telah di exit).Bila thread yang ingin di-join belum diterminasi,Maka fungsi ini akan menunggu hingga thread yang diinginkan telah terminated.
+Contoh program C Join_Thread:
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h> //library thread
+
+void *print_message_function( void *ptr );
+
+int main()
+{
+     pthread_t thread1, thread2;//inisialisasi awal
+     const char *message1 = "Thread 1";
+     const char *message2 = "Thread 2";
+     int  iret1, iret2;
+
+     iret1 = pthread_create( &thread1, NULL, print_message_function, (void*) message1);//membuat thread pertama
+     if(iret1)//jika eror
+     {
+         fprintf(stderr,"Error - pthread_create() return code: %d\n",iret1);
+         exit(EXIT_FAILURE);
+     }
+
+     iret2 = pthread_create( &thread2, NULL, print_message_function, (void*) message2);//membuat thread kedua
+     if(iret2)//jika gagal
+     {
+         fprintf(stderr,"Error - pthread_create() return code: %d\n",iret2);
+         exit(EXIT_FAILURE);
+     }
+
+     printf("pthread_create() for thread 1 returns: %d\n",iret1);
+     printf("pthread_create() for thread 2 returns: %d\n",iret2);
+
+     //pthread_join( thread1, NULL);
+     //pthread_join( thread2, NULL); 
+
+     exit(EXIT_SUCCESS);
+}
+
+void *print_message_function( void *ptr )
+{
+     char *message;
+     message = (char *) ptr;
+     printf("%s \n", message);
+}
+```
+Keterangan :
+- Pada program di atas kita mengcomment baris pthread_join hasilnya tidak akan memunculkan tulisan Thread 1 dan Thread 2 padahal diinisialisasi thread program akan menjalankan fungsi print_message. 
+- Sekarang kita mencoba menghapus comment pada Pthread_join. Hasilnya program akan mengeluarkan output Thread 1 dan Thread 2. 
+Kesimpulan :
+Pada program pertama tidak menjalankan fungsi print_message karena sebelum kedua Thread dijadwalkan, parent_thread telah selesai dieksekusi sehingga tidak menjalankan fungsi bawaan. Pada program kedua pthread_join digunakan untuk menunda eksekusi calling thread hingga target thread selesai dieksekusi, dengan fungsi ini parent_thread akan disuspend hingga target thread selesai dieksekusi.
 
 ### 1.3 Mutual Exclusion
 Suatu cara yang menjamin jika ada sebuah proses yang menggunakan variabel atau berkas yang sama (digunakan juga oleh proses lain), maka proses lain akan dikeluarkan dari pekerjaan yang sama.
+Contoh program Mutual_Exclusion:
+```c
+#include<stdio.h>
+#include<pthread.h>
+ 
+int i=0;
+pthread_t tid[2];
+pthread_mutex_t lock;
+ 
+void *tulis(void *ptr)
+{
+    //pthread_mutex_lock(&lock);
+    i=i+1;
+    printf("Thread %d dimulai\n",i);
+    printf("Tekan enter untuk mengakhiri thread\n");
+    getchar();
+    printf("Thread %d selesai\n",i);
+    //pthread_mutex_unlock(&lock);
+    return NULL;
+}
+ 
+int main()
+{
+    int j,err;
+    for(j=0;j<2;j++)
+    {
+     err=pthread_create(&tid[j],NULL,&tulis,NULL);
+     if(err==0)printf("Thread Created\n");
+    }
+    for(j=0;j<2;j++)
+    {
+     pthread_join(tid[j],NULL);
+    }
+}
+
+```
+Keterangan :
+- Jika kita menjalankan program diatas hasilnya tidak sesuai dengan yang kita inginkan di mana Thread 1 belum selesai processing, scheduler telah menjadwalkan Thread 2. 
+- Selanjutnya kita mencoba menghapus comment pada pthread_mutex_lock dan pthread_mutex_unlock. Hasilnya akan memunculkan Thread 1 selesai sesuai yang program seharusnya jalankan. 
+Kesimpulan :
+Kegunaan dari Mutex adalah untuk menjaga sumber daya suatu thread tidak digunakan oleh thread lain.
+
 
 # 2. IPC (*Interprocess Communication*)
 ### 2.1 IPC
