@@ -166,7 +166,8 @@ int main(void)
 Kesimpulan : terlihat ketika program menggunakan thread dapat menjalankan dua task secara bersamaan.
 ### 1.2 Join Thread
 Fungsi untuk melakukan penggabungan dengan thread lain yang telah di-terminasi (telah di exit).Bila thread yang ingin di-join belum diterminasi,Maka fungsi ini akan menunggu hingga thread yang diinginkan telah terminated.
-Contoh program C Join_Thread [thread_join](https://github.com/desyrahmi/sisop-modul-3/blob/master/thread_join.c):
+
+Contoh program C Join_Thread [thread_join.c](https://github.com/desyrahmi/sisop-modul-3/blob/master/thread_join.c):
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -219,6 +220,7 @@ Pada program pertama tidak menjalankan fungsi print_message karena sebelum kedua
 
 ### 1.3 Mutual Exclusion
 Suatu cara yang menjamin jika ada sebuah proses yang menggunakan variabel atau berkas yang sama (digunakan juga oleh proses lain), maka proses lain akan dikeluarkan dari pekerjaan yang sama.
+
 Contoh program Mutual_Exclusion [threadmutex.c](https://github.com/desyrahmi/sisop-modul-3/blob/master/threadmutex.c):
 ```c
 #include<stdio.h>
