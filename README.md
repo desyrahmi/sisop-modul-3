@@ -215,6 +215,7 @@ void *print_message_function( void *ptr )
 Keterangan :
 - Pada program di atas kita mengcomment baris pthread_join hasilnya tidak akan memunculkan tulisan Thread 1 dan Thread 2 padahal diinisialisasi thread program akan menjalankan fungsi print_message. 
 - Sekarang kita mencoba menghapus comment pada Pthread_join. Hasilnya program akan mengeluarkan output Thread 1 dan Thread 2. 
+
 Kesimpulan :
 Pada program pertama tidak menjalankan fungsi print_message karena sebelum kedua Thread dijadwalkan, parent_thread telah selesai dieksekusi sehingga tidak menjalankan fungsi bawaan. Pada program kedua pthread_join digunakan untuk menunda eksekusi calling thread hingga target thread selesai dieksekusi, dengan fungsi ini parent_thread akan disuspend hingga target thread selesai dieksekusi.
 
@@ -260,6 +261,7 @@ int main()
 Keterangan :
 - Jika kita menjalankan program diatas hasilnya tidak sesuai dengan yang kita inginkan di mana Thread 1 belum selesai processing, scheduler telah menjadwalkan Thread 2. 
 - Selanjutnya kita mencoba menghapus comment pada pthread_mutex_lock dan pthread_mutex_unlock. Hasilnya akan memunculkan Thread 1 selesai sesuai yang program seharusnya jalankan. 
+
 Kesimpulan :
 Kegunaan dari Mutex adalah untuk menjaga sumber daya suatu thread tidak digunakan oleh thread lain.
 
