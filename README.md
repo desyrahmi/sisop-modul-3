@@ -33,6 +33,9 @@ Requirement:
 
 ## Daftar Isi
 - [1. Thread](https://github.com/desyrahmi/sisop-modul-3#1-thread )
+- [1.1 Thread](https://github.com/desyrahmi/sisop-modul-3#11-thread ) 
+- [1.2 Join Thread](https://github.com/desyrahmi/sisop-modul-3#12-join-thread ) 
+- [1.3 Mutual Exclusion](https://github.com/desyrahmi/sisop-modul-3#13-mutual-exclusion) 
 - [2. IPC](https://github.com/desyrahmi/sisop-modul-3#2-ipc-interprocess-communication)
 - [2.1 IPC](https://github.com/desyrahmi/sisop-modul-3#21-ipc)
 - [2.2 Pipes](https://github.com/desyrahmi/sisop-modul-3#22-pipes)
@@ -55,7 +58,7 @@ $ top -H
 ### 1.2 Join Thread
 Fungsi untuk melakukan penggabungan dengan thread lain yang telah di-terminasi (telah di exit).Bila thread yang ingin di-join belum diterminasi,Maka fungsi ini akan menunggu hingga thread yang diinginkan telah terminated.
 
-### 1.3 MUTUAL EXCLUSION
+### 1.3 Mutual Exclusion
 Suatu cara yang menjamin jika ada sebuah proses yang menggunakan variabel atau berkas yang sama (digunakan juga oleh proses lain), maka proses lain akan dikeluarkan dari pekerjaan yang sama.
 
 # 2. IPC (*Interprocess Communication*)
