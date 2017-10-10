@@ -32,6 +32,7 @@ Requirement:
 3. Peserta memahami bagaimana cara membuat thread
 
 ## Daftar Isi
+- [1. Thread](https://github.com/desyrahmi/sisop-modul-3#1-Thread )
 - [2. IPC](https://github.com/desyrahmi/sisop-modul-3#2-ipc-interprocess-communication)
 - [2.1 IPC](https://github.com/desyrahmi/sisop-modul-3#21-ipc)
 - [2.2 Pipes](https://github.com/desyrahmi/sisop-modul-3#22-pipes)
@@ -43,7 +44,7 @@ Requirement:
 - [2.6 Shared Memory](https://github.com/desyrahmi/sisop-modul-3#25-semaphores)
 - [Appendix](#appendix)
 
-# 1. Thread
+# 1. Thread 
 ### 1.1 Thread
 Thread merupakan unit terkecil dalam suatu proses yang bisa dijadwalkan oleh sistem operasi. Dimana THREAD juga bisa menjalankan suatu tugas secara bersamaan. Dalam thread terdapat ID Thread, Program COunter, Register dan Stack.
 Untuk mengecek bisa menggunakan perintah
@@ -51,7 +52,11 @@ Untuk mengecek bisa menggunakan perintah
 $ top -H
 ```
 
-### 1.2 
+### 1.2 Join Thread
+Fungsi untuk melakukan penggabungan dengan thread lain yang telah di-terminasi (telah di exit).Bila thread yang ingin di-join belum diterminasi,Maka fungsi ini akan menunggu hingga thread yang diinginkan telah terminated.
+
+### 1.3 MUTUAL EXCLUSION
+Suatu cara yang menjamin jika ada sebuah proses yang menggunakan variabel atau berkas yang sama (digunakan juga oleh proses lain), maka proses lain akan dikeluarkan dari pekerjaan yang sama.
 
 # 2. IPC (*Interprocess Communication*)
 ### 2.1 IPC
