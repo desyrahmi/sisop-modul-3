@@ -564,7 +564,7 @@ $ man unistd.h
 ## Soal Latihan 
 
 #### Latihan 1
-
+Buatlah sebuah program multi treading yang dapat menyalin isi file baca.txt ke dalam file salin1.txt. Kemudian menyalin isi dari file salin1.txt ke dalam file salin2.txt!
 
 ### References 
 https://notes.shichao.io/apue/
