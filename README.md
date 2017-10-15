@@ -564,7 +564,11 @@ $ man unistd.h
 ## Soal Latihan 
 
 #### Latihan 1
-Buatlah sebuah program multi treading yang dapat menyalin isi file baca.txt ke dalam file salin1.txt. Kemudian menyalin isi dari file salin1.txt ke dalam file salin2.txt!
+Buatlah sebuah program multithreading yang dapat menyalin isi file baca.txt ke dalam file salin1.txt. Kemudian menyalin isi dari file salin1.txt ke dalam file salin2.txt!
+#### Latihan 2
+Buatlah sebuah program simple chatting dengan socket client dan server, sehingga client dan server dapat saling mengirim pesan (single client). Dan juga gunakan multithreading untuk membuat backup percakapan secara realtime! 
+#### Latihan 3
+Implementasikan program multithreading untuk server pada soal latihan 2 sehingga server dapat menerima setiap pesan dari client dan membroadcastnya ke setiap client yang ada (multi client)!
 
 ### References 
 https://notes.shichao.io/apue/
