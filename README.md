@@ -566,9 +566,8 @@ $ man unistd.h
 #### Latihan 1
 Buatlah sebuah program multithreading yang dapat menyalin isi file baca.txt ke dalam file salin1.txt. Kemudian menyalin isi dari file salin1.txt ke dalam file salin2.txt!
 #### Latihan 2
-Buatlah sebuah program multithreading yang dapat menampilkan N bilangan prima pertama. program akan dieksekusi menggunakan thread sebanyak T dimana setiap thread akan melakukan print sebanayk N/T bilangan prima.
-Input : N = banyak bilangan prima
-		T = banyak thread yang digunakan
+Buatlah sebuah program multithreading yang dapat menampilkan N bilangan prima pertama. program akan dieksekusi menggunakan thread sebanyak T dimana setiap thread akan melakukan print sebanyak N/T bilangan prima.
+Input : N = banyak bilangan prima; T = banyak thread yang digunakan
 #### Latihan 3
 Ohan adalah seorang network administrator, dia bekerja menggunakan linux server. Suatu ketika Ohan
 merasa jenuh dengan pekerjaannya dia ingin mendengarkan lagu, tetapi linux server tidak memiliki GUI
