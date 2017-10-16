@@ -222,45 +222,57 @@ Pada program pertama tidak menjalankan fungsi print_message karena sebelum kedua
 ### 1.3 Mutual Exclusion
 Suatu cara yang menjamin jika ada sebuah proses yang menggunakan variabel atau berkas yang sama (digunakan juga oleh proses lain), maka proses lain akan dikeluarkan dari pekerjaan yang sama.
 
-Contoh program Mutual_Exclusion [threadmutex.c](https://github.com/desyrahmi/sisop-modul-3/blob/master/threadmutex.c):
+Contoh program Simple Mutual_Exclusion [threadmutex.c](https://github.com/desyrahmi/sisop-modul-3/blob/master/threadmutex.c):
 ```c
 #include<stdio.h>
+#include<string.h>
 #include<pthread.h>
+#include<stdlib.h>
+#include<unistd.h>
  
-int i=0;
-pthread_t tid[2];
-pthread_mutex_t lock;
+pthread_t tid1;
+pthread_t tid2;
+int status;
+int nomor;
  
-void *tulis(void *ptr)
+void* tulis(void *arg)
 {
-    //pthread_mutex_lock(&lock);
-    i=i+1;
-    printf("Thread %d dimulai\n",i);
-    printf("Tekan enter untuk mengakhiri thread\n");
-    getchar();
-    printf("Thread %d selesai\n",i);
-    //pthread_mutex_unlock(&lock);
+    status = 0;
+ 
+    printf("Masukan nomor ");
+    scanf("%d", &nomor);
+ 
+    status = 1;
+ 
     return NULL;
 }
- 
-int main()
+
+
+void* baca(void *arg)
 {
-    int j,err;
-    for(j=0;j<2;j++)
+    while(status != 1)
     {
-     err=pthread_create(&tid[j],NULL,&tulis,NULL);
-     if(err==0)printf("Thread Created\n");
+
     }
-    for(j=0;j<2;j++)
-    {
-     pthread_join(tid[j],NULL);
-    }
+
+    printf("Nomor %d\n", nomor);
+}
+ 
+int main(void)
+{
+
+    pthread_create(&(tid1), NULL, &tulis, NULL);
+    pthread_create(&(tid2), NULL, baca, NULL);
+ 
+    pthread_join(tid1, NULL);
+    pthread_join(tid2, NULL);
+ 
+    return 0;
 }
 
 ```
 Keterangan :
-- Jika kita menjalankan program diatas hasilnya tidak sesuai dengan yang kita inginkan di mana Thread 1 belum selesai processing, scheduler telah menjadwalkan Thread 2. 
-- Selanjutnya kita mencoba menghapus comment pada pthread_mutex_lock dan pthread_mutex_unlock. Hasilnya akan memunculkan Thread 1 selesai sesuai yang program seharusnya jalankan. 
+- Variabel status adalah contoh simple untuk mengendalikan jalannya thread. 
 
 Kesimpulan :
 Kegunaan dari Mutex adalah untuk menjaga sumber daya suatu thread tidak digunakan oleh thread lain.
