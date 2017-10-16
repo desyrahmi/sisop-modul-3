@@ -97,7 +97,7 @@ int main()
         sleep(1);
         system("clear");
     }
-    system("cvlc bagimu-negri.mp3");
+    system("xlogo");
 }
 
 ```
@@ -135,7 +135,7 @@ void* playandcount(void *arg)
     }
     else if(pthread_equal(id,tid[1]))
     {
-        system("cvlc bagimu-negri.mp3");
+        system("xlogo");
     }
     return NULL;
 }
