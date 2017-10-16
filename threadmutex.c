@@ -1,32 +1,45 @@
 #include<stdio.h>
+#include<string.h>
 #include<pthread.h>
-
-int i=0;
-pthread_t tid[2];
-pthread_mutex_t lock;
-
-void *tulis(void *ptr)
+#include<stdlib.h>
+#include<unistd.h>
+ 
+pthread_t tid1;
+pthread_t tid2;
+int status;
+int nomor;
+ 
+void* tulis(void *arg)
 {
-	pthread_mutex_lock(&lock);
-	i=i+1;
-	printf("Thread %d dimulai\n",i);
-	printf("Tekan enter untuk mengakhiri thread\n");
-	getchar();
-	printf("Thread %d selesai\n",i);
-	pthread_mutex_unlock(&lock);
-	return NULL;
+    status = 0;
+ 
+    printf("Masukan nomor ");
+    scanf("%d", &nomor);
+ 
+    status = 1;
+ 
+    return NULL;
 }
 
-int main()
+
+void* baca(void *arg)
 {
-	int j,err;
-	for(j=0;j<2;j++)
-	{
-		err=pthread_create(&tid[j],NULL,&tulis,NULL);
-		if(err==0)printf("Thread Created\n");
-	}
-	for(j=0;j<2;j++)
-	{
-		pthread_join(tid[j],NULL);
-	}
+    while(status != 1)
+    {
+
+    }
+
+    printf("Nomor %d\n", nomor);
+}
+ 
+int main(void)
+{
+
+    pthread_create(&(tid1), NULL, &tulis, NULL);
+    pthread_create(&(tid2), NULL, baca, NULL);
+ 
+    pthread_join(tid1, NULL);
+    pthread_join(tid2, NULL);
+ 
+    return 0;
 }
