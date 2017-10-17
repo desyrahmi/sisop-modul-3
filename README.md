@@ -411,6 +411,7 @@ Proses 1
 #include <stdio.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <unistd.h>
 
 void main()
 {
@@ -436,6 +437,7 @@ Proses 2
 #include <stdio.h>
 #include <sys/ipc.h>
 #include <sys/shm.h>
+#include <unistd.h>
 
 void main()
 {
@@ -464,8 +466,8 @@ Program 1 : 30
 ```
 Proses 2
 ```
-Program 1 : 30
 Program 1 : 10
+Program 1 : 30
 ```
 
 # Appendix
