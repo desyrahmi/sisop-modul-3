@@ -262,7 +262,7 @@ int main(void)
 {
 
     pthread_create(&(tid1), NULL, &tulis, NULL);
-    pthread_create(&(tid2), NULL, baca, NULL);
+    pthread_create(&(tid2), NULL, &baca, NULL);
  
     pthread_join(tid1, NULL);
     pthread_join(tid2, NULL);
@@ -303,6 +303,7 @@ Server
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
+#include <unistd.h>
 #define PORT 8080
 
 int main(int argc, char const *argv[]) {
@@ -356,6 +357,7 @@ Client
 #include <stdlib.h>
 #include <netinet/in.h>
 #include <string.h>
+#include <unistd.h>
 #define PORT 8080
   
 int main(int argc, char const *argv[]) {
